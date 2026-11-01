@@ -53,6 +53,14 @@ Limiti di memoria come gli originali: K.O. 40 secondi in totale, Voce 8 secondi 
 
 Sotto le linguette: BPM comune a tutti (− / +, tenendo premuto scorre; TAP per battere il tempo), **▶ TUTTI** avvia insieme i dispositivi che hanno qualcosa nel pattern o nella catena, **■** ferma tutto. Mentre suona, i LED dei tasti lampeggiano sul suono che parte e l'ampolla sull'LCD si riempie col livello d'uscita del dispositivo.
 
+## Libro dei pattern e copia tra operator
+
+Il pulsante **LIBRO** nella barra del clock apre i 54 pattern di "16 step in linea": cerca per nome, genere o suono, guarda la griglia, scegli una variante e applicala a un operator e a uno slot (con tempo e swing del pattern, se vuoi). *Band* mette la batteria su OD-32, il basso su OD-14 e gli accordi su OD-16 nello stesso slot. I pattern a due battute occupano due slot e diventano una catena; i due pattern a 12 step (terzine) non si possono applicare perché gli operator hanno 16 step fissi.
+
+Le tracce del libro passano per ruolo: cassa, rullante o clap, hat chiuso o aperto, perc (rim, ride, shaker, tom/conga, campanaccio secondo l'etichetta), basso e accordi, ciascuna sul suono più vicino dell'operator. Sui modelli con un solo kit di batteria (micro drum di OD-14/16/28, fette di K.O., kit Tonic di Voce) un solo colpo per step: vince cassa, poi rullante, poi perc, poi hat. Ghost note e accenti: accento sì, ghost come colpo normale (gli operator non hanno velocità per step).
+
+La scheda **Copia tra operator** copia un pattern o tutti i 16 (con la catena) e li incolla su un altro dispositivo: identici tra modelli uguali, convertiti per ruolo tra modelli diversi. C'è anche il formato testo del libro (`kick x...x...x...x...`) per copiare e incollare pattern a mano.
+
 ## Le due viste
 
 - **▭ Uno alla volta**: un dispositivo per schermata, si scorre di lato o dalle linguette. In orizzontale sul telefono l'LCD e i knob vanno a sinistra e i 16 tasti a destra, così entra tutto senza scorrere.
