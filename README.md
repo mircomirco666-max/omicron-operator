@@ -58,9 +58,14 @@ Sotto le linguette: BPM comune a tutti (− / +, tenendo premuto scorre; TAP per
 - **▭ Uno alla volta**: un dispositivo per schermata, si scorre di lato o dalle linguette. In orizzontale sul telefono l'LCD e i knob vanno a sinistra e i 16 tasti a destra, così entra tutto senza scorrere.
 - **▦ Tutti insieme**: i nove dispositivi affiancati, con lo zoom: cursore, + e −, pizzico con due dita, e *ADATTA* che li fa entrare tutti nello schermo (su iPad in orizzontale stanno su due file). Il dispositivo toccato per ultimo ha il bordo colorato e riceve la tastiera. Su iPad l'app parte in questa vista.
 
+## Note sui comandi
+
+- In REC, un tocco su FX (o su KEY/CHORD) lo arma per il tasto successivo; per cancellare gli effetti o gli stili registrati nel pattern tienilo premuto da solo per un secondo. Su K.O. e Voce gli effetti si cancellano con FX + 16.
+- Mentre un pattern o una catena suona, le modifiche (step, lock, accenti, FX) vanno al pattern che si sente in quel momento, che è quello mostrato in PTN sull'LCD; se hai appena scelto un altro pattern con PATTERN + tasto, le modifiche vanno a quello.
+
 ## Tastiera (desktop)
 
-Tasti 1-16: `1234` `QWER` `ASDF` `ZXCV`. Modificatori: `⇧` SOUND, `P` PATTERN, `B` BPM, `N` FX, `M` WRITE, `G` terzo tasto, `SPAZIO` play/stop, `←` `→` cambia dispositivo.
+Tasti 1-16: `1234` `QWER` `ASDF` `ZXCV`. Modificatori (posizione fisica dei tasti, qualunque layout): `⇧` SOUND, `P` PATTERN, `B` BPM, `N` FX, `M` WRITE, `G` terzo tasto, `SPAZIO` play/stop, `←` `→` cambia dispositivo.
 
 ## Note
 

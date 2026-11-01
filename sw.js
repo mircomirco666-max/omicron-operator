@@ -1,5 +1,5 @@
 /* Omicron Operator — service worker: app shell in cache, fonts cached when first seen online. */
-var VERSION = 'omicron-operator-v3';
+var VERSION = 'omicron-operator-v4';
 var SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/icon-180.png', './icons/favicon-32.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(SHELL); }).then(function () { return self.skipWaiting(); }));
