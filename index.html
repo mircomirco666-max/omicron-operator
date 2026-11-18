@@ -557,7 +557,7 @@ function sampleKey(d,slot){ return d.idx+':'+slot; }
 function storeSample(d,slot){ var key=sampleKey(d,slot); if (storeTimers[key]) clearTimeout(storeTimers[key]); storeTimers[key]=setTimeout(function(){ delete storeTimers[key]; var b=d.samples[slot]; if (!b){ idbDel(key); return; } var data=new Float32Array(b.length); data.set(b.getChannelData(0)); idbPut(key,{sr:b.sampleRate,data:data,slices:d.slices[slot]||null}); },600); }
 function restoreSamples(){ idbAll(function(all){ var n=0; for (var k in all){ var p=k.split(':'), d=devices[+p[0]], slot=+p[1], v=all[k]; if (!d||!(slot>=0&&slot<16)||!v||!v.data||!v.data.length) continue; try{ var b=ctx.createBuffer(1,v.data.length,v.sr||ctx.sampleRate); b.getChannelData(0).set(v.data); d.samples[slot]=b; d.slices[slot]=validSlices(v.slices); n++; }catch(e){} } makeStarterSamples(); renderAll(); }); }
 function validSlices(sl){ if (!sl||!sl.length||sl.length!==16) return null; var out=[]; for (var i=0;i<16;i++){ var x=sl[i]||{}; var st=+x.s, l=+x.l; if (!isFinite(st)||!isFinite(l)) return null; out.push({s:clamp(st,0,0.98),l:clamp(l,0.01,1)}); } return out; }
-/* screen wake lock while the clock runs (ignored where unsupported) */
+/* screen wake lock for as long as the app is open and visible (ignored where unsupported) */
 var wake=null;
 function requestWake(){ try{ if (navigator.wakeLock&&!wake) navigator.wakeLock.request('screen').then(function(w){ wake=w; w.addEventListener('release',function(){ wake=null; }); },function(){}); }catch(e){} }
 function releaseWake(){ try{ if (wake){ wake.release(); wake=null; } }catch(e){} }
@@ -1057,7 +1057,7 @@ function stopDevice(d){
   for (var k in d.hits){ if (d.ui) d.ui.keys[k].classList.remove('hit'); } d.hits={};
   if (!fxHeld(d)) d.fxLive=0;
   if (d.bus&&ctx) applyBusFx(d,null,ctx.currentTime,{bar:0,bars:0,eighth:0});
-  if (!anyPlaying()){ clock.running=false; if (clock.timer){ clearInterval(clock.timer); clock.timer=null; } releaseWake(); silentPause(); }
+  if (!anyPlaying()){ clock.running=false; if (clock.timer){ clearInterval(clock.timer); clock.timer=null; } silentPause(); }
   flash(d,'STOP'); render(d); renderMaster();
 }
 function stopAll(){ devices.forEach(function(d){ if (d.playing||d.armed) stopDevice(d); }); }
@@ -1596,7 +1596,9 @@ if (STANDALONE){
   $('btnInstall').addEventListener('click',function(){ if (!deferredPrompt) return; deferredPrompt.prompt(); deferredPrompt.userChoice.then(function(){ deferredPrompt=null; $('btnInstall').hidden=true; }); });
   window.addEventListener('appinstalled',function(){ $('installNote').textContent='App installata: funziona anche senza rete.'; $('btnInstall').hidden=true; });
 }
-document.addEventListener('visibilitychange',function(){ if (document.hidden&&clock.running) stopAll(); });
+document.addEventListener('visibilitychange',function(){ if (document.hidden){ if (clock.running) stopAll(); releaseWake(); } else requestWake(); });
+requestWake();
+document.addEventListener('pointerdown',requestWake,true);
 applyView(); renderAll(); devices.forEach(function(d){ drawSprite(d,false,0); });
 setTimeout(function(){ if (VIEW.all){ if (!VIEW.fitted) fitZoom(); } else { var el=devices[cur].ui.el; rail.scrollLeft=el.offsetLeft-rail.offsetLeft; } },0);
 })();
